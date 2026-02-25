@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Vote</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-success bg-opacity-25">
+
+<nav class="navbar navbar-dark bg-success">
+  <div class="container-fluid">
+    <span class="navbar-brand">Online Voting</span>
+  </div>
+</nav>
+
+<div class="container mt-4">
+  <h3 class="text-center mb-4">Select Your Candidate</h3>
+
+  <div class="row">
+
+    <div class="col-md-4 mb-4" >
+      <div class="card text-center shadow">
+        <img src="BRS.jpg" class="card-img-top" height="200">
+        <div class="card-body">
+          <h5>BRS</h5>
+          <button class="btn btn-success" onclick="vote('BRS')">Vote</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4 mb-4">
+      <div class="card text-center shadow">
+        <img src="CONGRESS.jpg" class="card-img-top" height="200">
+        <div class="card-body">
+          <h5>Congress</h5>
+          <button class="btn btn-success" onclick="vote('Congress')">Vote</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4 mb-4">
+      <div class="card text-center shadow">
+        <img src="BJP.jpg" class="card-img-top" height="200">
+        <div class="card-body">
+          <h5>BJP</h5>
+          <button class="btn btn-success" onclick="vote('BJP')">Vote</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4 mb-4">
+      <div class="card text-center shadow">
+        <img src="BSP.png" class="card-img-top" height="200">
+        <div class="card-body">
+          <h5>BSP</h5>
+          <button class="btn btn-success" onclick="vote('Congress')">Vote</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4 mb-4">
+      <div class="card text-center shadow">
+        <img src="AIMIM.jpg" class="card-img-top" height="200">
+        <div class="card-body">
+          <h5>AIMIM</h5>
+          <button class="btn btn-success" onclick="vote('Congress')">Vote</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4 mb-4">
+      <div class="card text-center shadow">
+        <img src="NOTA.jpg" class="card-img-top" height="200">
+        <div class="card-body">
+          <h5>NOTA</h5>
+          <button class="btn btn-success" onclick="vote('Congress')">Vote</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+function vote(candidate){
+
+  let userId = localStorage.getItem("currentUser");
+  let voter = JSON.parse(localStorage.getItem(userId));
+
+  if(voter.voted){
+    alert("You already voted!");
+    return;
+  }
+
+  let votes = JSON.parse(localStorage.getItem("votes")) || {};
+
+  votes[candidate] = (votes[candidate] || 0) + 1;
+
+  localStorage.setItem("votes", JSON.stringify(votes));
+
+  voter.voted = true;
+  localStorage.setItem(userId, JSON.stringify(voter));
+
+  window.location.href="thankyou.html";
+}
+</script>
+
+</body>
+</html>
